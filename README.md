@@ -1,4 +1,4 @@
-#common-rocketmq介绍
+##common-rocketmq介绍
 
 该项目对rocketmq在实际项目开发中做了简单的封装，使用简单，common-rocketmq是基于JDK8的，下面是common-rocketmq结构：
 
@@ -13,7 +13,6 @@ rocketmq-----common-------MessageData（消息传输DTO）
 		|---consumer------RocketMQConsumer（消费者）
 					  |
 					  |---ConsumerService（消费者业务逻辑需要实现的接口）
-
 ```
 
 
@@ -21,7 +20,7 @@ rocketmq-----common-------MessageData（消息传输DTO）
 common-rocketmq.xml
 
 
-#使用举例
+##使用举例
 
 demo的github地址：https://github.com/xinyi-lt/common-rocketmq-demo
 
@@ -88,8 +87,11 @@ demo的github地址：https://github.com/xinyi-lt/common-rocketmq-demo
 
 **3.consumer消费者**
 
-- 配置文件引入 <import resource="classpath*:conf/common-rocketmq.xml"/>
+- 配置文件引入
 
+  ```java
+   <import resource="classpath*:conf/common-rocketmq.xml"/>
+  ```
 
 
 - 实现common-rocketmq中的ConsumerService的接口
