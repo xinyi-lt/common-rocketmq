@@ -4,15 +4,15 @@
 
 包含5个类和一个XML配置文件
 
-```
+```java
 rocketmq-----common-------MessageData（消息传输DTO）
 		|
 		|---producer-------RocketMQProducer（生产者接口）
 		|             |
 		|             |---RocketMQProducerImpl（生产者接口实现）
 		|---consumer------RocketMQConsumer（消费者）
-					  |
-					  |---ConsumerService（消费者业务逻辑需要实现的接口）
+					|
+					|---ConsumerService（消费者业务逻辑需要实现的接口）
 common-rocketmq.xml
 ```
 
