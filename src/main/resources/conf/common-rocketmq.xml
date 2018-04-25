@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="CONSUME_FROM_FIRST_OFFSET"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField"
+                  value="com.alibaba.rocketmq.common.consumer.ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET" />
+    </bean>
+    <bean id="BROADCASTING"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField"
+                  value="com.alibaba.rocketmq.common.protocol.heartbeat.MessageModel.BROADCASTING" />
+    </bean>
+    <bean id="CLUSTERING"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField"
+                  value="com.alibaba.rocketmq.common.protocol.heartbeat.MessageModel.CLUSTERING" />
+    </bean>
+
+
+    <bean id="producer" class="com.sxzq.lt.rocketmq.producer.RocketMQProducerImpl"
+          lazy-init="true" init-method="start" destroy-method="shutdown">
+        <constructor-arg value="mq_group_default_clustering" index="0"></constructor-arg>
+        <property name="namesrvAddr" value="127.0.0.1:9876"/>
+        <property name="retryTimesWhenSendFailed" value="3"/>
+    </bean>
+</beans>
