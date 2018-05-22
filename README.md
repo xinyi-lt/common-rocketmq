@@ -82,6 +82,22 @@ demo的github地址：https://github.com/xinyi-lt/common-rocketmq-demo
         logger.info("send message complete result:{} ", result);
 ```
 
+- 发送延时消息
+
+  ```java
+  		//消息
+          Message msg = new Message(MQConstant.MQ_TOPIC_PRODUCER_DEMO,
+                  MQConstant.MQ_TAG_PRODUCER_DEMO_FIRST,
+                  msgKey,
+                  JSON.toJSONString(messageData).getBytes(Charset.forName("utf-8")));
+
+          //设置延迟消息级别
+          // messageDelayLevel=1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
+          msg.setDelayTimeLevel(4);
+
+          //发送消息
+          SendResult result = producer.sendMessage(msg);
+  ```
 
 **3.consumer消费者**
 

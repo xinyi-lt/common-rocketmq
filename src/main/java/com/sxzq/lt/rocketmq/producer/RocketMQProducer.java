@@ -11,4 +11,12 @@ public interface RocketMQProducer {
     SendResult sendMessage(Message msg);
 
     SendResult sendMessage(Message msg, long timeout);
+
+    /**
+     * 发送消息，进行重试
+     * @param msg
+     * @param repeatTimes
+     * @return
+     */
+    boolean sendMessge(Message msg,int repeatTimes);
 }

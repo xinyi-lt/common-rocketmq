@@ -4,6 +4,7 @@ import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
 import com.alibaba.rocketmq.client.producer.SendCallback;
 import com.alibaba.rocketmq.client.producer.SendResult;
+import com.alibaba.rocketmq.client.producer.SendStatus;
 import com.alibaba.rocketmq.common.message.Message;
 import com.alibaba.rocketmq.remoting.exception.RemotingException;
 import org.slf4j.Logger;
@@ -59,7 +60,20 @@ public class RocketMQProducerImpl extends DefaultMQProducer implements RocketMQP
     }
 
     @Override
-    public void send(Message msg, SendCallback sendCallback) throws MQClientException, RemotingException, InterruptedException {
-        super.send(msg, sendCallback);
+    public boolean sendMessge(Message msg,int repeatTimes) {
+        boolean result = false;
+        int count = 0;
+        while (count < repeatTimes){
+            SendResult sendResult = sendMessage(msg);
+            logger.debug("send message,result:" + sendResult.getSendStatus());
+
+            if(sendResult != null && SendStatus.SEND_OK == sendResult.getSendStatus()){
+                result = true;
+                break;
+            }else{
+                count++;
+            }
+        }
+        return result;
     }
 }
